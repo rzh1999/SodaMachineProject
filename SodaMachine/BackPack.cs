@@ -8,5 +8,6 @@ namespace SodaMachine
 {
     class BackPack
     {
+        public List<Can> cans;
     }
 }

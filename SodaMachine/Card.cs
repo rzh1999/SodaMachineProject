@@ -8,5 +8,8 @@ namespace SodaMachine
 {
     class Card
     {
+        private double availableFunds;
+
+        public double AvailableFunds { get => availableFunds; set => availableFunds = value; }
     }
 }
