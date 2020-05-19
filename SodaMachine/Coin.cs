@@ -9,7 +9,7 @@ namespace SodaMachine
     public class Coin
     {
         public string name;
-        private double value;
+        protected double value;
         public double Value { get => value; set => this.value = value; }
     }
 }

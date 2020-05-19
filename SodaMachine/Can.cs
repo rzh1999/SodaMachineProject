@@ -9,7 +9,7 @@ namespace SodaMachine
     public abstract class Can
     {
         public string name;
-        private double cost;
+        protected double cost;
 
         public double Cost { get => cost; set => cost = value; }
     }

@@ -24,9 +24,9 @@ namespace SodaMachine
             {
                 totalAmount += item.Value;
             }
-            Console.WriteLine($"Wallet balance is {totalAmount}");
-            Console.ReadLine();
-            return Math.Round(totalAmount);
+
+            //return Math.Round(totalAmount);
+            return totalAmount;
         }
 
         public double GetBackPackCount()
@@ -34,6 +34,13 @@ namespace SodaMachine
             return backPack.cans.Count();
         }
 
+        public void DisplayBackPack()
+        {
+            foreach (Can item in backPack.cans)
+            {
+                Console.WriteLine($"{item.name} is in your backpack!");
+            }
+        }
         
     }
 }
