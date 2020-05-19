@@ -10,7 +10,6 @@ namespace SodaMachine
     {
         public string name;
         private double value;
-
         public double Value { get => value; set => this.value = value; }
     }
 }
