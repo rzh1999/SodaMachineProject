@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.PerformanceData;
 using System.Dynamic;
 using System.Linq;
+using System.Runtime.Remoting.Services;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,12 +30,15 @@ namespace SodaMachine
                
                 index++;
             }
-
-            Console.WriteLine($"Enter {customer.wallet.coins.Count +1} when done selecting coins");
-            
+            int coinCount = customer.wallet.coins.Count + 1;
+            Console.WriteLine($"Enter {coinCount} when done selecting coins");
             int choice = int.Parse(Console.ReadLine());
-            changeSelection.Add(customer.wallet.coins[choice]);
 
+            while (choice != coinCount) {
+                changeSelection.Add(customer.wallet.coins[choice]);
+                Console.WriteLine("Enter another amount");
+                choice = int.Parse(Console.ReadLine());
+            }
             return changeSelection;
         }
 
@@ -44,7 +48,7 @@ namespace SodaMachine
             Wallet wallet = new Wallet();
             Customer customer = new Customer();
 
-            SetAmountToDispense();
+            List<Coin> returnList = SetAmountToDispense();
             Console.ReadLine();
         }
     }
