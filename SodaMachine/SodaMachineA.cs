@@ -9,12 +9,13 @@ namespace SodaMachine
     class SodaMachineA
     {
         public List<Coin> register;
-        public List<Can> can;
+        public List<Can> cans;
         public int quarterCount;
 
         public SodaMachineA()
         {
             register = new List<Coin>();
+            cans = new List<Can>();
 
             Quarter quarter = new Quarter();
             SetStartingMoney(20, quarter);
@@ -27,8 +28,24 @@ namespace SodaMachine
 
             Dime dime = new Dime();
             SetStartingMoney(10, dime);
+
+            Cola cola = new Cola();
+            SetStartingCans(10, cola);
+
+            OrangeSoda orange = new OrangeSoda();
+            SetStartingCans(10, orange);
+
+            RootBeer rootbeer = new RootBeer();
+            SetStartingCans(10, rootbeer);
         }
 
+        private void SetStartingCans(int amountOfCans, Can can)
+        {
+            for (int i = 0; i < amountOfCans; i++)
+            {
+                cans.Add(can);
+            }
+        }
        private void SetStartingMoney(int coinAmount, Coin coin)
         {
             for (int i = 0; i < coinAmount; i++)

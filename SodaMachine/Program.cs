@@ -11,7 +11,7 @@ namespace SodaMachine
         static void Main(string[] args)
         {
             SodaMachineA soda = new SodaMachineA();
-            
+            Wallet wallet = new Wallet();
         }
     }
 }
