@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SodaMachine
 {
-    class Coin
+    public class Coin
     {
         public string name;
         private double value;

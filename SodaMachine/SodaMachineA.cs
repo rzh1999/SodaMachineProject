@@ -10,5 +10,7 @@ namespace SodaMachine
     {
         public List<Coin> register;
         public List<Can> can;
+
+       
     }
 }
