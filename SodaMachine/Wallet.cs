@@ -16,16 +16,16 @@ namespace SodaMachine
             coins = new List<Coin>();
 
             Quarter quarter = new Quarter();
-            PopulateDefaultWallet(8, quarter);
+            PopulateDefaultWallet(12, quarter);
 
             Dime dime = new Dime();
-            PopulateDefaultWallet(6, dime);
+            PopulateDefaultWallet(10, dime);
 
             Nickel nickel = new Nickel();
-            PopulateDefaultWallet(12, nickel);
+            PopulateDefaultWallet(50, nickel);
 
             Penny penny = new Penny();
-            PopulateDefaultWallet(40, penny);
+            PopulateDefaultWallet(50, penny);
         }
 
         private void PopulateDefaultWallet(int amountOfCoin, Coin coin)
