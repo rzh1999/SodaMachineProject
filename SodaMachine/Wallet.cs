@@ -22,13 +22,13 @@ namespace SodaMachine
             PopulateDefaultWallet(10, dime);
 
             Nickel nickel = new Nickel();
-            PopulateDefaultWallet(50, nickel);
+            PopulateDefaultWallet(10, nickel);
 
             Penny penny = new Penny();
             PopulateDefaultWallet(50, penny);
         }
 
-        private void PopulateDefaultWallet(int amountOfCoin, Coin coin)
+        public void PopulateDefaultWallet(int amountOfCoin, Coin coin)
         {
            // coins = new List<Coin>();
             for (int i =0; i < amountOfCoin; i++)

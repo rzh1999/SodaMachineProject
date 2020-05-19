@@ -10,8 +10,13 @@ namespace SodaMachine
     {
         static void Main(string[] args)
         {
-            SodaMachineA soda = new SodaMachineA();
-            Wallet wallet = new Wallet();
+            //SodaMachineA soda = new SodaMachineA();
+            //Wallet wallet = new Wallet();
+            //Customer customer = new Customer();
+            //customer.GetWalletBalance();
+
+            Simulation simulation = new Simulation();
+            simulation.RunSimulation();
         }
     }
 }
