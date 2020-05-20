@@ -41,6 +41,8 @@ namespace SodaMachine
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
             double machineBankTotal = sodaMachineA.GetRegisterTotal();
 
+
+
             //Console.WriteLine($"Amount chose to deposit {totalAmountToDeposit}");
 
             //If not enough money is passed in, don’t complete transaction and give the money back
@@ -86,7 +88,20 @@ namespace SodaMachine
                 }
             }
 
+            if (totalAmountToDeposit > machineBankTotal)
+            {
+                foreach (Coin item in coinChoice)
+                {
+                    customer.wallet.coins.Remove(item);
+                }
 
+                foreach (Coin item in coinChoice)
+                {
+                    customer.wallet.coins.Add(item);
+                }
+
+                Console.WriteLine($"The machine cannot make change your money has been refunded");
+            }
 
             //If too much money is passed in, accept the payment, return change as a list of coins from internal,
             //limited register, and dispense a soda instance that gets saved to my Backpack.
