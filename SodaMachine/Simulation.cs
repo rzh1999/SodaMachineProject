@@ -122,6 +122,14 @@ namespace SodaMachine
                 customer.wallet.coins.Remove(item);
             }
         }
+
+        public void AddCoinsToWallet(List<Coin> coinChoice)
+        {
+            foreach (Coin item in coinChoice)
+            {
+                customer.wallet.coins.Add(item);
+            }
+        }
         public void GiveChange(double amount)
         {
             Console.WriteLine($"Amount is {amount}");
