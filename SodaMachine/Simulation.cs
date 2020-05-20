@@ -24,6 +24,18 @@ namespace SodaMachine
 
         public void BuyASoda()
         {
+
+            //
+            //
+            //
+            //To make change divide remainder by .25 = quarters
+            //then by .10
+            //then by .05
+            //then by .01
+            //
+            //
+            //
+            //
             List<Can> sodaChoice = ChooseASoda();
             List<Coin> coinChoice = SetAmountToDispense();
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
@@ -70,6 +82,79 @@ namespace SodaMachine
             //}
         }
         
+        public void GiveChange(double amount)
+        {
+            Console.WriteLine($"Amount is {amount}");
+            double quarterValue = 0;
+            double remainder = 0;
+            double dimeValue = 0;
+            int dimeValueToInt =0;
+            int quarterValueToInt = 0;
+            double nickelValue = 0;
+            double nickelValueToInt = 0;
+            double pennyValue = 0;
+            double pennyValueToInt = 0;
+
+            if (amount > .25 || amount < .25)
+            {
+                if (amount < .25)
+                {
+                    remainder = amount;
+                }
+                else
+                {
+                    quarterValue = amount / .25;
+
+                    //quarterValueToInt = Convert.ToInt32(quarterValue);
+                    //quarterValue = Math.Floor(quarterValue);
+                    quarterValueToInt = (int)quarterValue;
+                    remainder = amount % .25;
+                    remainder = Math.Round(remainder, 2);
+
+                    Console.WriteLine($"Number of Quarters returned {quarterValueToInt} remainder {remainder}");
+                    /* for (remainer){
+                     * add to wallet
+                     */
+                }
+            }
+
+            if (remainder > .10 )
+            {
+                
+                dimeValue = remainder / .10;
+                //dimeValueToInt = Convert.ToInt32(dimeValue);
+                //dimeValue = Math.Floor(dimeValue);
+                dimeValueToInt = (int)dimeValue;
+                remainder = remainder % .10;
+                remainder = Math.Round(remainder, 2);
+                Console.WriteLine($"Number of dimes returned {dimeValueToInt} remainder {remainder}");
+            }
+
+            if (remainder > .05)
+            {
+                nickelValue = remainder / .05;
+                //nickelValueToInt = Convert.ToInt32(nickelValue);
+                //nickelValue = Math.Floor(nickelValue);
+                //nickelValueToInt = Convert.ToInt32(nickelValue);
+                nickelValueToInt = (int)nickelValue;
+                remainder = remainder % .05;
+                remainder = Math.Round(remainder, 2);
+                Console.WriteLine($"Number of nickels returned {nickelValueToInt} remainder {remainder}");
+            }
+
+            if (remainder >= .01)
+            {
+                pennyValue = remainder / .01;
+                //pennyValueToInt = Convert.ToInt32(pennyValue);
+                //pennyValue = Math.Floor(pennyValue);
+                pennyValueToInt = (int)pennyValue;
+                remainder = remainder % .01;
+                remainder = Math.Round(remainder, 2);
+                Console.WriteLine($"Number of pennies returned {pennyValueToInt} remainder {remainder}");
+            }
+           
+            
+        }
         public double GetChoiceAmount(List<Coin> coin)
         {
             double total = 0;
@@ -126,7 +211,14 @@ namespace SodaMachine
 
             //List<Coin> returnList = SetAmountToDispense();
             //List<Can>  sodaChoice = ChooseASoda();
-            BuyASoda();
+            GiveChange(.16);
+            GiveChange(.02);
+            GiveChange(.98);
+            GiveChange(.35);
+            GiveChange(.22);
+            //BuyASoda();
+
+
             Console.ReadLine();
         }
     }
