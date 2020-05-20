@@ -25,8 +25,8 @@ namespace SodaMachine
                 totalAmount += item.Value;
             }
 
-            //return Math.Round(totalAmount);
-            return totalAmount;
+            return Math.Round(totalAmount,2);
+            
         }
 
         public double GetBackPackCount()

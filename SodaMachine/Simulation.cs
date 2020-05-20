@@ -46,11 +46,11 @@ namespace SodaMachine
             //If exact change is passed in, accept payment and dispense a soda instance that gets saved in my Backpack.
             if (sodaChoice[0].Cost == totalAmountToDeposit && machineBankTotal > totalAmountToDeposit)
             {  
-                Console.WriteLine($"This is sodachoices name {sodaChoice[0].name}");
-               
                 Console.WriteLine($"Thank you for your purchase, your wallets balance is now {String.Format("{0:0.00}",customer.GetWalletBalance())}");
 
                 customer.backPack.cans.Add(sodaChoice[0]);
+
+                Console.WriteLine($"{sodaChoice[0].name} has been added to your backpack");
 
                 sodaMachineA.cans.Remove(sodaChoice[0]);
                 customer.DisplayBackPack();
@@ -84,7 +84,11 @@ namespace SodaMachine
                 double changeDue = totalAmountToDeposit - sodaChoice[0].Cost;
                 GiveChange(changeDue);
 
+                Console.WriteLine($"Your change in the amount of {changeDue} has been dispensed");
+
                 customer.backPack.cans.Add(sodaChoice[0]);
+
+                Console.WriteLine($"{sodaChoice[0].name} has been added to your backpack");
 
                 sodaMachineA.cans.Remove(sodaChoice[0]);
                 customer.DisplayBackPack();
@@ -109,7 +113,7 @@ namespace SodaMachine
         }
         public void GiveChange(double amount)
         {
-            Console.WriteLine($"Amount is {amount}");
+            
             double quarterValue = 0;
             double remainder = 0;
             double dimeValue = 0;
@@ -137,7 +141,7 @@ namespace SodaMachine
                     //Add quarters to wallet
                     Quarter quarter = new Quarter();
                     AddChangeToWallet(quarter, quarterValueToInt);
-                    Console.WriteLine($"Number of Quarters returned {quarterValueToInt} remainder {remainder}");
+                    
                     
                 }
             }
@@ -155,7 +159,6 @@ namespace SodaMachine
                 Dime dime = new Dime();
                 AddChangeToWallet(dime, dimeValueToInt);
 
-                Console.WriteLine($"Number of dimes returned {dimeValueToInt} remainder {remainder}");
             }
 
             if (remainder > .05)
@@ -170,7 +173,6 @@ namespace SodaMachine
                 Nickel nickel = new Nickel();
                 AddChangeToWallet(nickel, nickelValueToInt);
 
-                Console.WriteLine($"Number of nickels returned {nickelValueToInt} remainder {remainder}");
             }
 
             if (remainder >= .01)
@@ -185,10 +187,8 @@ namespace SodaMachine
                 Penny penny = new Penny();
                 AddChangeToWallet(penny,pennyValueToInt);
 
-                Console.WriteLine($"Number of pennies returned {pennyValueToInt} remainder {remainder}");
             }
            
-            
         }
 
         public void AddChangeToWallet(Coin coin, int numberOfCoins)
@@ -249,21 +249,9 @@ namespace SodaMachine
 
         public void RunSimulation()
         {
-            //SodaMachineA soda = new SodaMachineA();
-            //Wallet wallet = new Wallet();
-            //Customer customer = new Customer();
-
-            //List<Coin> returnList = SetAmountToDispense();
-            //List<Can>  sodaChoice = ChooseASoda();
-            //GiveChange(.16);
-            //GiveChange(.02);
-            //GiveChange(.98);
-            //GiveChange(.35);
-            //GiveChange(.22);
-            double result1 = customer.GetWalletBalance();
-            Console.WriteLine($"Wallet balance before purchase {result1}");
+           
             BuyASoda();
-            result1 = customer.GetWalletBalance();
+            double result1 = customer.GetWalletBalance();
             Console.WriteLine($"Wallet balance after purchase {result1}");
 
 
