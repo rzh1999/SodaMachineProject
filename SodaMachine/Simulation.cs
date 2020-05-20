@@ -24,18 +24,6 @@ namespace SodaMachine
 
         public void BuyASoda()
         {
-
-            //
-            //
-            //
-            //To make change divide remainder by .25 = quarters
-            //then by .10
-            //then by .05
-            //then by .01
-            //
-            //
-            //
-            //
             List<Can> sodaChoice = ChooseASoda();
             List<Coin> coinChoice = SetAmountToDispense();
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
@@ -43,7 +31,6 @@ namespace SodaMachine
 
             //Remove deposited amount from wallet
             RemoveCoinsFromWallet(coinChoice);
-
 
             //Console.WriteLine($"Amount chose to deposit {totalAmountToDeposit}");
 
@@ -56,9 +43,7 @@ namespace SodaMachine
            
             //If exact change is passed in, accept payment and dispense a soda instance that gets saved in my Backpack.
             if (sodaChoice[0].Cost == totalAmountToDeposit && machineBankTotal > totalAmountToDeposit)
-            {
-                //Console.WriteLine($"Your Current Wallets balance is {customer.GetWalletBalance()}");
-               
+            {  
                 Console.WriteLine($"This is sodachoices name {sodaChoice[0].name}");
                
                 Console.WriteLine($"Thank you for your purchase, your wallets balance is now {String.Format("{0:0.00}",customer.GetWalletBalance())}");
@@ -81,29 +66,28 @@ namespace SodaMachine
                 AddCoinsToWallet(coinChoice);
             }
 
+            //If too much money is passed in but there isn’t sufficient change in the machine’s internal register,
+            //don’t complete transaction: give the money back.
             if (totalAmountToDeposit > machineBankTotal)
             {
-
-
                 AddCoinsToWallet(coinChoice);
 
                 Console.WriteLine($"The machine cannot make change your money has b een refunded");
             }
 
-            //If too much money is passed in, accept the payment, return change as a list of coins from internal,
+            //If too much money is passed in, accept the payment, return change as a list of coins from intenal,
             //limited register, and dispense a soda instance that gets saved to my Backpack.
-            //if (totalAmountToDeposit > sodaChoice[0].Cost)
-            //{
-            //    double changeDue = 0;
+            if (totalAmountToDeposit > sodaChoice[0].Cost && machineBankTotal > totalAmountToDeposit) 
+            {
+                double changeDue = totalAmountToDeposit - sodaChoice[0].Cost;
+                GiveChange(changeDue);
 
-            //}
+                customer.backPack.cans.Add(sodaChoice[0]);
 
-            //If exact or too much money is passed in but there isn’t sufficient inventory for that soda,
-            //don’t complete the transaction: give the money back
-            //if (totalAmountToDeposit > sodaChoice[0].Cost || totalAmountToDeposit == sodaChoice[0].Cost)
-            //{
-            //    Console.WriteLine($"The soda ");
-            //}
+                sodaMachineA.cans.Remove(sodaChoice[0]);
+                customer.DisplayBackPack();
+
+            }
         }
         
         public void RemoveCoinsFromWallet(List<Coin> coinChoice)
