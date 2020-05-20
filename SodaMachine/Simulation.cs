@@ -51,10 +51,7 @@ namespace SodaMachine
             if (sodaChoice[0].Cost > totalAmountToDeposit)
             {
                 Console.WriteLine($"You did not deposit enough coins deposited: {String.Format("{0:0.00}",totalAmountToDeposit)} required: {String.Format("{0:0.00}",sodaChoice[0].Cost)}!");
-                foreach (Coin item in coinChoice)
-                {
-                    customer.wallet.coins.Add(item);
-                }
+                AddCoinsToWallet(coinChoice);
             }
            
             //If exact change is passed in, accept payment and dispense a soda instance that gets saved in my Backpack.
@@ -81,20 +78,14 @@ namespace SodaMachine
                
                 Console.WriteLine($"There is no {sodaChoice[0].name} available");
 
-                foreach (Coin item in coinChoice)
-                {
-                    customer.wallet.coins.Add(item);
-                }
+                AddCoinsToWallet(coinChoice);
             }
 
             if (totalAmountToDeposit > machineBankTotal)
             {
-                
 
-                foreach (Coin item in coinChoice)
-                {
-                    customer.wallet.coins.Add(item);
-                }
+
+                AddCoinsToWallet(coinChoice);
 
                 Console.WriteLine($"The machine cannot make change your money has b een refunded");
             }
