@@ -28,6 +28,8 @@ namespace SodaMachine
             List<Coin> coinChoice = SetAmountToDispense();
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
             double machineBankTotal = sodaMachineA.GetRegisterTotal();
+            
+            
 
             //Remove deposited amount from wallet
             RemoveCoinsFromWallet(coinChoice);
@@ -72,7 +74,7 @@ namespace SodaMachine
             {
                 AddCoinsToWallet(coinChoice);
 
-                Console.WriteLine($"The machine cannot make change your money has b een refunded");
+                Console.WriteLine($"The machine cannot make change your money has been refunded");
             }
 
             //If too much money is passed in, accept the payment, return change as a list of coins from intenal,
@@ -258,8 +260,13 @@ namespace SodaMachine
             //GiveChange(.98);
             //GiveChange(.35);
             //GiveChange(.22);
+            double result1 = customer.GetWalletBalance();
+            Console.WriteLine($"Wallet balance before purchase {result1}");
             BuyASoda();
-          
+            result1 = customer.GetWalletBalance();
+            Console.WriteLine($"Wallet balance after purchase {result1}");
+
+
 
             Console.ReadLine();
         }

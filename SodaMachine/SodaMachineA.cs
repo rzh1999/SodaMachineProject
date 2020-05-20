@@ -18,16 +18,19 @@ namespace SodaMachine
             cans = new List<Can>();
 
             Quarter quarter = new Quarter();
-            SetStartingMoney(20, quarter);
-
+            //SetStartingMoney(20, quarter);
+            SetStartingMoney(1, quarter);
             Nickel nickel = new Nickel();
-            SetStartingMoney(20, nickel);
+            //SetStartingMoney(20, nickel);
+            SetStartingMoney(0, nickel);
 
             Penny penny = new Penny();
-            SetStartingMoney(50, penny);
+            //SetStartingMoney(50, penny);
+            SetStartingMoney(0, penny);
 
             Dime dime = new Dime();
-            SetStartingMoney(10, dime);
+            //SetStartingMoney(10, dime);
+            SetStartingMoney(0, dime);
 
             Cola cola = new Cola();
             SetStartingCans(10, cola);
