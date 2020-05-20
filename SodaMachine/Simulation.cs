@@ -91,9 +91,9 @@ namespace SodaMachine
             int dimeValueToInt =0;
             int quarterValueToInt = 0;
             double nickelValue = 0;
-            double nickelValueToInt = 0;
+            int nickelValueToInt = 0;
             double pennyValue = 0;
-            double pennyValueToInt = 0;
+            int pennyValueToInt = 0;
 
             if (amount > .25 || amount < .25)
             {
@@ -109,6 +109,9 @@ namespace SodaMachine
                     remainder = amount % .25;
                     remainder = Math.Round(remainder, 2);
 
+                    //Add quarters to wallet
+                    Quarter quarter = new Quarter();
+                    AddChangeToWallet(quarter, quarterValueToInt);
                     Console.WriteLine($"Number of Quarters returned {quarterValueToInt} remainder {remainder}");
                     
                 }
@@ -123,6 +126,10 @@ namespace SodaMachine
                 remainder = remainder % .10;
                 remainder = Math.Round(remainder, 2);
 
+                //Add dimes to wallet
+                Dime dime = new Dime();
+                AddChangeToWallet(dime, dimeValueToInt);
+
                 Console.WriteLine($"Number of dimes returned {dimeValueToInt} remainder {remainder}");
             }
 
@@ -134,6 +141,10 @@ namespace SodaMachine
                 remainder = remainder % .05;
                 remainder = Math.Round(remainder, 2);
 
+                //Add nickels to wllet
+                Nickel nickel = new Nickel();
+                AddChangeToWallet(nickel, nickelValueToInt);
+
                 Console.WriteLine($"Number of nickels returned {nickelValueToInt} remainder {remainder}");
             }
 
@@ -144,6 +155,10 @@ namespace SodaMachine
 
                 remainder = remainder % .01;
                 remainder = Math.Round(remainder, 2);
+
+                //Add pennies to wllet
+                Penny penny = new Penny();
+                AddChangeToWallet(penny,pennyValueToInt);
 
                 Console.WriteLine($"Number of pennies returned {pennyValueToInt} remainder {remainder}");
             }
@@ -157,8 +172,7 @@ namespace SodaMachine
             {
                 customer.wallet.coins.Add(coin);
             }
-            double results = customer.GetWalletBalance();
-            Console.WriteLine($"Inside AddChange() {results}");
+          
         }
         public double GetChoiceAmount(List<Coin> coin)
         {
@@ -222,12 +236,7 @@ namespace SodaMachine
             //GiveChange(.35);
             //GiveChange(.22);
             //BuyASoda();
-            double totalAmount = customer.GetWalletBalance();
-            Console.WriteLine($"Balance before AddChangeTowallet() {totalAmount}");
-            Quarter quarter = new Quarter();
-            AddChangeToWallet(quarter, 3);
-           double totalAmount2 = customer.GetWalletBalance();
-            Console.WriteLine($"Balance after AddChangeTowallet() {totalAmount2}");
+          
 
             Console.ReadLine();
         }
