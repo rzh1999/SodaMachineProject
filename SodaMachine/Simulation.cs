@@ -39,6 +39,7 @@ namespace SodaMachine
             List<Can> sodaChoice = ChooseASoda();
             List<Coin> coinChoice = SetAmountToDispense();
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
+            double machineBankTotal = sodaMachineA.GetRegisterTotal();
 
             //Console.WriteLine($"Amount chose to deposit {totalAmountToDeposit}");
 
@@ -49,7 +50,7 @@ namespace SodaMachine
             }
            
             //If exact change is passed in, accept payment and dispense a soda instance that gets saved in my Backpack.
-            if (sodaChoice[0].Cost == totalAmountToDeposit)
+            if (sodaChoice[0].Cost == totalAmountToDeposit && machineBankTotal > totalAmountToDeposit)
             {
                 //Console.WriteLine($"Your Current Wallets balance is {customer.GetWalletBalance()}");
                
@@ -65,6 +66,27 @@ namespace SodaMachine
                 sodaMachineA.cans.Remove(sodaChoice[0]);
                 customer.DisplayBackPack();
             }
+
+            //If exact or too much money is passed in but there isn’t sufficient inventory for that soda,
+            //don’t complete the transaction: give the money back
+            //Coded this as per requirement but current design does not allow this to happen since the program will only display available coins
+            //This is important to keep, in case we allowed multiple purchases but there was no reqirement to do so
+            if (sodaChoice[0].Cost == totalAmountToDeposit && !sodaMachineA.cans.Contains(sodaChoice[0]))
+            {
+                foreach (Coin item in coinChoice)
+                {
+                    customer.wallet.coins.Remove(item);
+                }
+
+                Console.WriteLine($"There is no {sodaChoice[0].name} available");
+
+                foreach (Coin item in coinChoice)
+                {
+                    customer.wallet.coins.Add(item);
+                }
+            }
+
+
 
             //If too much money is passed in, accept the payment, return change as a list of coins from internal,
             //limited register, and dispense a soda instance that gets saved to my Backpack.
@@ -235,7 +257,7 @@ namespace SodaMachine
             //GiveChange(.98);
             //GiveChange(.35);
             //GiveChange(.22);
-            //BuyASoda();
+            BuyASoda();
           
 
             Console.ReadLine();

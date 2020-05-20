@@ -54,5 +54,15 @@ namespace SodaMachine
             }
         }
       
+        public double GetRegisterTotal()
+        {
+            double total = 0;
+            foreach(Coin item in register)
+            {
+                total += item.Value;
+            }
+
+            return total;
+        }
     }
 }
