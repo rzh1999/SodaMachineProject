@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.PerformanceData;
 using System.Dynamic;
 using System.Linq;
@@ -29,8 +30,6 @@ namespace SodaMachine
             double totalAmountToDeposit = GetChoiceAmount(coinChoice);
             double machineBankTotal = sodaMachineA.GetRegisterTotal();
             
-            
-
             //Remove deposited amount from wallet
             RemoveCoinsFromWallet(coinChoice);
 
@@ -209,19 +208,129 @@ namespace SodaMachine
 
             return total;
         }
+        //public List<Can> ChooseASoda()
+        //{
+        //    List<Can> canChoice = new List<Can>();
+        //    int index = 0;
+
+        //    foreach (Can item in sodaMachineA.cans)
+        //    {
+        //        Console.WriteLine($"Choose {index}: for {item.name} Price: {item.Cost} ");
+        //        index++;
+        //    }
+
+        //    Console.WriteLine($"Enter choice:");
+        //    int userInput = int.Parse(Console.ReadLine());
+
+        //    canChoice.Add(sodaMachineA.cans[userInput]);
+
+        //    return canChoice;
+        //}
+
+        //public List<Can> ChooseASoda()
+        //{
+        //    List<Can> canChoice = new List<Can>();
+
+        //    Console.WriteLine($"1. Root Beer");
+        //    Console.WriteLine($"2. Cola");
+        //    Console.WriteLine($"3. Orange Soda");
+
+        //    Console.WriteLine($"Enter choice:");
+        //    int userInput = int.Parse(Console.ReadLine());
+
+
+        //    // get indexes of sodas
+        //    int rootBeer = 0;
+        //    int cola = 0;
+        //    int orangeSoda = 0;
+
+        //    s
+
+        //    rootBeer = sodaMachineA.cans.FindIndex(r => r.name.Equals("root beer"));
+        //    cola = sodaMachineA.cans.FindIndex(r => r.name.Equals("cola"));
+        //    orangeSoda = sodaMachineA.cans.FindIndex(r => r.name.Equals("orange soda"));
+
+        //    switch (userInput)
+        //    {
+        //        case 1:
+        //            canChoice.Add(sodaMachineA.cans[rootBeer]);
+        //            break;
+        //        case 2:
+        //            canChoice.Add(sodaMachineA.cans[cola]);
+        //            break;
+        //        case 3:
+        //            canChoice.Add(sodaMachineA.cans[orangeSoda]);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //}
+
         public List<Can> ChooseASoda()
         {
-            List < Can > canChoice = new List<Can>();
-            int index = 0;
+            List<Can> canChoice = new List<Can>();
+            //var x = sodaMachineA.cans.Distinct();
 
-            foreach(Can item in sodaMachineA.cans)
-            {
-                Console.WriteLine($"Choose {index}: for {item.name} Price: {item.Cost} ");
-                index++;
-            }
+            //foreach (Can item in x)
+            //{
+            //    Console.WriteLine(item.name);
+            //}
+
+            Console.WriteLine($"1. root beer");
+            Console.WriteLine($"2. cola");
+            Console.WriteLine($"3. orange soda");
+
             Console.WriteLine($"Enter choice:");
-            int userInput = int.Parse(Console.ReadLine());
-            canChoice.Add(sodaMachineA.cans[userInput]);
+            string userInput = Console.ReadLine();
+
+            switch (userInput)
+            {
+                case "root beer":
+                    AddChosenCan(userInput);
+                    break;
+                case "cola":
+                    AddChosenCan(userInput);
+                    break;
+                case "orange soda":
+                    AddChosenCan(userInput);
+                    break;
+                default:
+                    Console.WriteLine($"You must enter a valid choice root beer, cola, orange soda");
+                    Console.WriteLine();
+                    userInput = Console.ReadLine();
+                    break;
+            }
+           
+            //switch ()
+            //{
+            //    case 1:
+            //        canIndex = sodaMachineA.cans.Where(r => r.name == userInput).FirstOrDefault();
+            //        canChoice.Add(canIndex);
+            //        break;
+            //    case 2:
+            //        canIndex = sodaMachineA.cans.Where(r => r.name == userInput).FirstOrDefault();
+            //        canChoice.Add(canIndex);
+            //        break;
+            //    case 3:
+            //        canIndex = sodaMachineA.cans.Where(r => r.name == userInput).FirstOrDefault();
+            //        canChoice.Add(canIndex);
+            //        break;
+            //}
+            return canChoice;
+        }
+
+        public List<Can> AddChosenCan(string userInput)
+        {
+            List<Can> canChoice = new List<Can>();
+            foreach (Can can in sodaMachineA.cans)
+            {
+                if (can.name == userInput)
+                {
+                    canChoice.Add(can);
+                    break;
+                }
+            }
             return canChoice;
         }
         public List<Coin> SetAmountToDispense()
