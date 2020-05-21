@@ -277,12 +277,13 @@ namespace SodaMachine
             //    Console.WriteLine(item.name);
             //}
 
-            Console.WriteLine($"1. root beer");
-            Console.WriteLine($"2. cola");
-            Console.WriteLine($"3. orange soda");
-
-            Console.WriteLine($"Enter choice:");
+            Console.WriteLine($"Enter root beer");
+            Console.WriteLine($"Enter cola");
+            Console.WriteLine($"Enter orange soda");
+            Console.WriteLine();
+            Console.WriteLine($"Please Enter A choice:");
             string userInput = Console.ReadLine();
+            userInput = userInput.ToLower();
 
             switch (userInput)
             {
