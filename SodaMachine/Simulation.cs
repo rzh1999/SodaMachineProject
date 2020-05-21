@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics.PerformanceData;
 using System.Dynamic;
 using System.Linq;
@@ -198,6 +199,7 @@ namespace SodaMachine
             }
           
         }
+
         public double GetChoiceAmount(List<Coin> coin)
         {
             double total = 0;
@@ -208,6 +210,7 @@ namespace SodaMachine
 
             return total;
         }
+
         //public List<Can> ChooseASoda()
         //{
         //    List<Can> canChoice = new List<Can>();
@@ -334,63 +337,140 @@ namespace SodaMachine
             }
             return canChoice;
         }
-        public List<Coin> SetAmountToDispense()
-        {
-            int index = 0;
-            List<Coin> changeSelection = new List<Coin>();
-            foreach (Coin item in customer.wallet.coins)
-            {
-                Console.WriteLine($"Choose {index} {item.name}");
-
-                index++;
-            }
-
-            int coinCount = customer.wallet.coins.Count + 1;
-
-            Console.WriteLine($"Enter {coinCount} when done selecting coins");
-            int choice = int.Parse(Console.ReadLine());
-
-
-            while (choice != coinCount)
-            {
-                changeSelection.Add(customer.wallet.coins[choice]);
-                Console.WriteLine("Enter another amount");
-                choice = int.Parse(Console.ReadLine());
-            }
-            return changeSelection;
-        }
-
+        ////original
         //public List<Coin> SetAmountToDispense()
         //{
         //    int index = 0;
-        //    int coinCount = 0;
-        //    int choice = 0;
         //    List<Coin> changeSelection = new List<Coin>();
-        //    while (coinCount != customer.wallet.coins.Count + 1)
+        //    foreach (Coin item in customer.wallet.coins)
         //    {
+        //        Console.WriteLine($"Choose {index} {item.name}");
 
-        //        foreach (Coin item in customer.wallet.coins)
-        //        {
-        //            Console.WriteLine($"Choose {index} {item.name}");
+        //        index++;
+        //    }
 
-        //            index++;
-        //        }
+        //    int coinCount = customer.wallet.coins.Count + 1;
 
-        //        coinCount = customer.wallet.coins.Count + 1;
+        //    Console.WriteLine($"Enter {coinCount} when done selecting coins");
+        //    int choice = int.Parse(Console.ReadLine());
 
-        //        Console.WriteLine($"Enter {coinCount} when done selecting coins");
+
+        //    while (choice != coinCount)
+        //    {
+        //        changeSelection.Add(customer.wallet.coins[choice]);
+        //        Console.WriteLine("Enter another amount");
         //        choice = int.Parse(Console.ReadLine());
-
-
-        //        while (choice != coinCount)
-        //        {
-        //            changeSelection.Add(customer.wallet.coins[choice]);
-        //            Console.WriteLine("Enter another amount");
-        //            choice = int.Parse(Console.ReadLine());
-        //        }
         //    }
         //    return changeSelection;
         //}
+
+        public List<Coin> SetAmountToDispense()
+        {
+            bool stop = true;
+
+            
+
+            List<Coin> changeSelection = new List<Coin>();
+
+            Quarter quarter = new Quarter();
+            Dime dime = new Dime();
+            Nickel nickel = new Nickel();
+            Penny penny = new Penny();
+
+            Wallet newWallet = new Wallet();
+
+            int quarterCount = 0;
+            int dimeCount = 0;
+            int nickelCount = 0;
+            int pennyCount = 0;
+
+            while (stop)
+            {
+                Console.WriteLine($"Enter coins:");
+                if (newWallet.coins.Count != 0)
+                {
+                    foreach (Coin coin in newWallet.coins)
+                    {
+                        if (coin.name == "quarter")
+                        {
+                            quarterCount = quarterCount + 1;
+                        }
+                    }
+                    if (quarterCount > 0)
+                    {
+                        Console.WriteLine($"Enter quarter");
+                        quarterCount = 0;
+                    }
+
+                    foreach(Coin coin in newWallet.coins)
+                    {
+                        if (coin.name == "dime")
+                        {
+                            dimeCount = dimeCount + 1;
+                        }
+                    }
+                    if (dimeCount > 0)
+                    {
+                        Console.WriteLine($"Enter dime");
+                    }
+
+                    foreach(Coin coin in newWallet.coins)
+                    {
+                        if (coin.name == "nickel")
+                        {
+                            nickelCount = nickelCount + 1;
+                        }
+                    }
+                    if (nickelCount > 0)
+                    {
+                        Console.WriteLine($"Enter nickel");
+                    }
+                    
+                    foreach(Coin coin in newWallet.coins)
+                    {
+                        if (coin.name == "penny")
+                        {
+                            pennyCount = pennyCount + 1;
+                        }
+                    }
+                    if (pennyCount > 0)
+                    {
+                        Console.WriteLine($"Enter penny");
+                    }
+                    
+                }
+                Console.WriteLine($"Enter done when finished");
+
+                string userInput = Console.ReadLine();
+                userInput = userInput.ToLower();
+
+                switch (userInput)
+                {
+                    case "quarter":
+                        Coin coin = newWallet.coins.Where(u => u.name == "quarter").FirstOrDefault();
+                         
+                        changeSelection.Add(quarter);
+                        customer.wallet.coins.Remove(coin);
+                        break;
+                    case "dime":
+                        changeSelection.Add(dime);
+                        break;
+                    case "nickel":
+                        changeSelection.Add(nickel);
+                        break;
+                    case "penny":
+                        changeSelection.Add(penny);
+                        break;
+                    case "done":
+                        stop = false;
+                        break;
+                    default:
+                        Console.WriteLine($"Please enter a valid coinage");
+                        break;
+                }
+            }
+            return changeSelection;
+        }
 
         //public List<Coin> SetAmountToDispense()
         //{

@@ -10,13 +10,13 @@ namespace SodaMachine
     {
         public List<Coin> coins;
         public Card card;
-
+        public int quarterCount;
         public Wallet()
         {
             coins = new List<Coin>();
-
+            //quarterCount = 1;
             Quarter quarter = new Quarter();
-            PopulateDefaultWallet(12, quarter);
+            PopulateDefaultWallet(1, quarter);
 
             Dime dime = new Dime();
             PopulateDefaultWallet(10, dime);
