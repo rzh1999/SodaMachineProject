@@ -393,7 +393,7 @@ namespace SodaMachine
                     {
                         if (coin.name == "quarter")
                         {
-                            quarterCount = quarterCount + 1;
+                            quarterCount++;
                         }
                     }
                     if (quarterCount > 0)
@@ -406,36 +406,39 @@ namespace SodaMachine
                     {
                         if (coin.name == "dime")
                         {
-                            dimeCount = dimeCount + 1;
+                            dimeCount++;
                         }
                     }
                     if (dimeCount > 0)
                     {
                         Console.WriteLine($"Enter dime");
+                        dimeCount = 0;
                     }
 
                     foreach(Coin coin in newWallet.coins)
                     {
                         if (coin.name == "nickel")
                         {
-                            nickelCount = nickelCount + 1;
+                            nickelCount++;
                         }
                     }
                     if (nickelCount > 0)
                     {
                         Console.WriteLine($"Enter nickel");
+                        nickelCount = 0;
                     }
                     
                     foreach(Coin coin in newWallet.coins)
                     {
                         if (coin.name == "penny")
                         {
-                            pennyCount = pennyCount + 1;
+                            pennyCount++;
                         }
                     }
                     if (pennyCount > 0)
                     {
                         Console.WriteLine($"Enter penny");
+                        pennyCount = 0;
                     }
                     
                 }
@@ -447,19 +450,24 @@ namespace SodaMachine
                 switch (userInput)
                 {
                     case "quarter":
-                        Coin coin = newWallet.coins.Where(u => u.name == "quarter").FirstOrDefault();
-                         
+                        Coin quarterCoin = newWallet.coins.Where(u => u.name == "quarter").FirstOrDefault();
                         changeSelection.Add(quarter);
-                        customer.wallet.coins.Remove(coin);
+                        newWallet.coins.Remove(quarterCoin);
                         break;
                     case "dime":
-                        changeSelection.Add(dime);
+                        Coin dimeCoin = newWallet.coins.Where(u => u.name == "dime").FirstOrDefault();
+                        changeSelection.Add(dimeCoin);
+                        newWallet.coins.Remove(dimeCoin);
                         break;
                     case "nickel":
-                        changeSelection.Add(nickel);
+                        Coin nickelCoin = newWallet.coins.Where(u => u.name == "nickel").FirstOrDefault();
+                        changeSelection.Add(nickelCoin);
+                        newWallet.coins.Remove(nickelCoin);
                         break;
                     case "penny":
-                        changeSelection.Add(penny);
+                        Coin pennyCoin = newWallet.coins.Where(u => u.name == "penny").FirstOrDefault();
+                        changeSelection.Add(pennyCoin);
+                        newWallet.coins.Remove(pennyCoin);
                         break;
                     case "done":
                         stop = false;

@@ -10,7 +10,7 @@ namespace SodaMachine
     {
         public List<Coin> coins;
         public Card card;
-        public int quarterCount;
+        //public int quarterCount;
         public Wallet()
         {
             coins = new List<Coin>();
