@@ -16,7 +16,7 @@ namespace SodaMachine
             coins = new List<Coin>();
             //quarterCount = 1;
             Quarter quarter = new Quarter();
-            PopulateDefaultWallet(1, quarter);
+            PopulateDefaultWallet(10, quarter);
 
             Dime dime = new Dime();
             PopulateDefaultWallet(10, dime);

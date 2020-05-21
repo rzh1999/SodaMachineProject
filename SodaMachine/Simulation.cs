@@ -132,11 +132,13 @@ namespace SodaMachine
                 }
                 else
                 {
-                    quarterValue = amount / .25;
-                    quarterValueToInt = (int)quarterValue;
+                    //quarterValue = amount / .25;
+                    //quarterValueToInt = (int)quarterValue;
+                    quarterValueToInt = GetNumberOfCoins(amount, .25);
 
-                    remainder = amount % .25;
-                    remainder = Math.Round(remainder, 2);
+                    //remainder = amount % .25;
+                    //remainder = Math.Round(remainder, 2);
+                    remainder = GetRemainder(amount, .25);
 
                     //Add quarters to wallet
                     Quarter quarter = new Quarter();
@@ -149,11 +151,13 @@ namespace SodaMachine
             if (remainder > .10 )
             {
                 
-                dimeValue = remainder / .10;
-                dimeValueToInt = (int)dimeValue;
+                //dimeValue = remainder / .10;
+                //dimeValueToInt = (int)dimeValue;
+                dimeValueToInt = GetNumberOfCoins(remainder, .10);
 
-                remainder = remainder % .10;
-                remainder = Math.Round(remainder, 2);
+                //remainder = remainder % .10;
+                //remainder = Math.Round(remainder, 2);
+                remainder = GetRemainder(remainder, .10);
 
                 //Add dimes to wallet
                 Dime dime = new Dime();
@@ -163,11 +167,13 @@ namespace SodaMachine
 
             if (remainder > .05)
             {
-                nickelValue = remainder / .05;
-                nickelValueToInt = (int)nickelValue;
+                //nickelValue = remainder / .05;
+                //nickelValueToInt = (int)nickelValue;
+                nickelValueToInt = GetNumberOfCoins(remainder, .05);
 
-                remainder = remainder % .05;
-                remainder = Math.Round(remainder, 2);
+                //remainder = remainder % .05;
+                //remainder = Math.Round(remainder, 2);
+                remainder = GetRemainder(remainder, .05);
 
                 //Add nickels to wllet
                 Nickel nickel = new Nickel();
@@ -177,12 +183,13 @@ namespace SodaMachine
 
             if (remainder >= .01)
             {
-                pennyValue = remainder / .01;
-                pennyValueToInt = (int)pennyValue;
+                //pennyValue = remainder / .01;
+                //pennyValueToInt = (int)pennyValue;
+                pennyValueToInt = GetNumberOfCoins(remainder, .01);
 
-                remainder = remainder % .01;
-                remainder = Math.Round(remainder, 2);
-
+                //remainder = remainder % .01;
+                //remainder = Math.Round(remainder, 2);
+                remainder = GetRemainder(remainder, .01);
                 //Add pennies to wllet
                 Penny penny = new Penny();
                 AddChangeToWallet(penny,pennyValueToInt);
@@ -191,6 +198,27 @@ namespace SodaMachine
            
         }
 
+        public int GetNumberOfCoins(double amount, double value)
+        {
+            double numberOfCoins = 0;
+            int numberOfCoinsToInt = 0;
+            double remainder = 0;
+
+            //quarterValue = amount / .25;
+            numberOfCoins = amount / value;
+            numberOfCoinsToInt = (int)numberOfCoins;
+
+            return numberOfCoinsToInt;
+        }
+
+        public double GetRemainder(double amount, double value)
+        {
+            double remainder = 0;
+            remainder = amount % value;
+            remainder = Math.Round(remainder, 2);
+
+            return remainder;
+        }
         public void AddChangeToWallet(Coin coin, int numberOfCoins)
         {
             for (int i =0; i < numberOfCoins; i++)
@@ -280,9 +308,9 @@ namespace SodaMachine
             //    Console.WriteLine(item.name);
             //}
 
-            Console.WriteLine($"Enter root beer");
-            Console.WriteLine($"Enter cola");
-            Console.WriteLine($"Enter orange soda");
+            Console.WriteLine($"Enter root beer         Root Beer Costs: .60");
+            Console.WriteLine($"Enter cola              Cola costs .35");
+            Console.WriteLine($"Enter orange soda       Orange Soda Costs: .06");
             Console.WriteLine();
             Console.WriteLine($"Please Enter A choice:");
             string userInput = Console.ReadLine();
