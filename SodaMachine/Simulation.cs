@@ -288,13 +288,13 @@ namespace SodaMachine
             switch (userInput)
             {
                 case "root beer":
-                    AddChosenCan(userInput);
+                    canChoice = AddChosenCan(userInput);
                     break;
                 case "cola":
-                    AddChosenCan(userInput);
+                    canChoice = AddChosenCan(userInput);
                     break;
                 case "orange soda":
-                    AddChosenCan(userInput);
+                    canChoice = AddChosenCan(userInput);
                     break;
                 default:
                     Console.WriteLine($"You must enter a valid choice root beer, cola, orange soda");
@@ -338,24 +338,78 @@ namespace SodaMachine
         {
             int index = 0;
             List<Coin> changeSelection = new List<Coin>();
-            foreach(Coin item in customer.wallet.coins)
+            foreach (Coin item in customer.wallet.coins)
             {
                 Console.WriteLine($"Choose {index} {item.name}");
-               
+
                 index++;
             }
+
             int coinCount = customer.wallet.coins.Count + 1;
+
             Console.WriteLine($"Enter {coinCount} when done selecting coins");
             int choice = int.Parse(Console.ReadLine());
 
 
-            while (choice != coinCount) {
+            while (choice != coinCount)
+            {
                 changeSelection.Add(customer.wallet.coins[choice]);
                 Console.WriteLine("Enter another amount");
                 choice = int.Parse(Console.ReadLine());
             }
             return changeSelection;
         }
+
+        //public List<Coin> SetAmountToDispense()
+        //{
+        //    int index = 0;
+        //    int coinCount = 0;
+        //    int choice = 0;
+        //    List<Coin> changeSelection = new List<Coin>();
+        //    while (coinCount != customer.wallet.coins.Count + 1)
+        //    {
+
+        //        foreach (Coin item in customer.wallet.coins)
+        //        {
+        //            Console.WriteLine($"Choose {index} {item.name}");
+
+        //            index++;
+        //        }
+
+        //        coinCount = customer.wallet.coins.Count + 1;
+
+        //        Console.WriteLine($"Enter {coinCount} when done selecting coins");
+        //        choice = int.Parse(Console.ReadLine());
+
+
+        //        while (choice != coinCount)
+        //        {
+        //            changeSelection.Add(customer.wallet.coins[choice]);
+        //            Console.WriteLine("Enter another amount");
+        //            choice = int.Parse(Console.ReadLine());
+        //        }
+        //    }
+        //    return changeSelection;
+        //}
+
+        //public List<Coin> SetAmountToDispense()
+        //{
+
+        //    List<Coin> coinChoice = new List<Coin>();
+
+        //    //foreach (Coin coin in customer.wallet.coins)
+        //    //{
+
+
+        //    //    if (can.name == userInput)
+        //    //    {
+        //    //        canChoice.Add(can);
+        //    //        break;
+        //    //    }
+        //    //}
+        //    return coinChoice;
+        //}
+
 
         public void RunSimulation()
         {
